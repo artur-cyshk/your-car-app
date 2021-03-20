@@ -32,7 +32,7 @@ const Vehicles = () => {
         items={vehicles}
         isListLoading={areVehiclesFetching}
         renderItem={(vehicle) => <Vehicle key={vehicle.id} vehicle={vehicle} />}
-        emptyText="No Vehicles available"
+        emptyText="No vehicles found."
         refresh={loadVehicles}
         error={vehiclesError}
       />

@@ -49,7 +49,7 @@ const Makes = () => {
                 renderItem={(make, className) => (
                   <Link key={make} className={className} to={`/models/${make}`}>{make}</Link>
                 )}
-                emptyText="No Makes available"
+                emptyText="No makes found."
                 refresh={loadMakes}
                 error={makesError}
               />

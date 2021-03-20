@@ -21,6 +21,7 @@ const List = ({ isListLoading, items, renderItem, refresh, error, emptyText }) =
         text={(
           <>
             <span>Garage empty.</span>
+            {emptyText && <span>{emptyText}</span>}
             <span>We are working on expanding our database.</span>
           </>
         )}

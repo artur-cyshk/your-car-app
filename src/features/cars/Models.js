@@ -57,7 +57,7 @@ const Models = () => {
               renderItem={(model, className) => (
                 <Link key={model} className={className} to={`${url}/${model}`}>{model}</Link>
               )}
-              emptyText="No Models available"
+              emptyText="No models found."
               refresh={loadModels}
               error={modelsError}
             />
