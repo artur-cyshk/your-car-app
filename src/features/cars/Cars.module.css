@@ -3,11 +3,22 @@
   display: flex;
   flex: 1;
   overflow: hidden;
+  justify-content: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   .cars {
     flex-direction: column;
     overflow: auto;
+    justify-content: flex-start;
   }
+}
+
+a {
+  text-decoration: none;
+  color: #434c6f;
+}
+
+a:active {
+  color: #d8dbeb;
 }

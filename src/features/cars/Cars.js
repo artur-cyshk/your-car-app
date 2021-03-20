@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import Header from 'components/Header';
 
-import Makes from './Makes/Makes';
+import Makes from './Makes';
 import styles from './Cars.module.css';
 
 const Cars = () => (

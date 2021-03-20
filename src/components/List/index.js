@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './List.module.css';
-import refreshIcon from './refresh.svg';
+import { FaCarCrash } from 'react-icons/fa';
+import { GiHomeGarage } from 'react-icons/gi';
+import ListAlert from './ListAlert';
 
 import Spinner from '../Spinner';
 
@@ -10,17 +12,44 @@ const List = ({ isListLoading, items, renderItem, refresh, error, emptyText }) =
     return <Spinner/>;
   }
   if (items?.length === 0) {
-    return <span>{emptyText || 'List is empty'}</span>;
+    return  (
+      <ListAlert
+        icon={{
+          component: GiHomeGarage,
+        }}
+        alt="empty-list"
+        text={(
+          <>
+            <span>Garage empty.</span>
+            <span>We are developing our database.</span>
+          </>
+        )}
+      />
+    );
   }
 
   if (error) {
-    return <img src={refreshIcon} alt="refresh" onClick={refresh}/>
+    return  (
+      <ListAlert
+        icon={{
+          component: FaCarCrash,
+          color: '#e2789a',
+        }}
+        alt="server-error"
+        text={(
+          <>
+            <span>An error occurred on the server.</span>
+            <span> Press <button className={styles.refreshButton} onClick={refresh}>here</button> to try again.</span>
+          </>
+        )}
+      />
+    );
   }
 
   if (items?.length > 0) {
     return (
       <ul className={styles.list}>
-        {items.map(renderItem)}
+        {items.map((item) => renderItem(item, styles.listItem))}
       </ul>
     )
   }

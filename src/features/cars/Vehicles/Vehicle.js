@@ -2,11 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Vehicles.module.css';
 
+import { GiKeyCard } from 'react-icons/gi';
+ 
 const Vehicle = ({ vehicle }) => {
   return (
     <div className={styles.vehicle}>
-      <span>{vehicle.make}</span>
-      <span>{vehicle.model}</span>
+      <GiKeyCard color="#979eb7" size="35"/>
+      <div className={styles.data}>
+        <div className={styles.row}>
+          <span className={styles.bodyType}>{vehicle.bodyType}</span>
+          <span className={styles.fuelType}>{vehicle.fuelType}</span>
+        </div>
+        <div className={styles.row}>
+          <span>Engine:</span> 
+          <span>{vehicle.engineCapacity} cm³ / {vehicle.enginePowerKW} kw / {vehicle.enginePowerPS} ps</span>
+        </div>
+      </div>
     </div>
   )
 };
