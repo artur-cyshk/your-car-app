@@ -1,23 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { generateUUID } from 'utils/helpers';
 import { fetchMakes, fetchModels, fetchVehicles } from './cars.service';
+
+const generateVehiclesKey = (make, model) => `${make}/${model}`;
 
 export const selectMakes = (state) => state.cars.makes;
 
-export const selectModels = (state, make) => {
-  return state.cars.makes[make];
-};
+export const selectModels = (state, make) => state.cars.models[make];
 
-export const selectVehicles = (state, make, model) => {
-  const models = state.cars.models[make] ?? {};
-  return models[model];
-};
+export const selectVehicles = (state, make, model) => state.cars.vehicles[generateVehiclesKey(make, model)];
 
-const getMakes = createAsyncThunk(
+export const getMakes = createAsyncThunk(
   'cars/makes',
   fetchMakes,
 );
 
-const getModels = createAsyncThunk(
+export const getModels = createAsyncThunk(
   'cars/models',
   async (make, { getState }) => {
     const storedModels = selectModels(getState(), make);
@@ -32,18 +30,18 @@ const getModels = createAsyncThunk(
   },
 );
 
-const getVehicles = createAsyncThunk(
+export const getVehicles = createAsyncThunk(
   'cars/vehicles',
   async ({ make, model }, { getState }) => {
     const storedVehicles = selectVehicles(getState(), make, model);
     if (storedVehicles) {
-      return { make, vehicles: storedVehicles };
+      return { make, model, vehicles: storedVehicles };
     }
-    const vehicles = await fetchVehicles(make);
+    const vehicles = await fetchVehicles(make, model);
     return {
       make,
       model,
-      vehicles,
+      vehicles: vehicles.map(vehicle => ({ ...vehicle, id: generateUUID() })),
     };
   },
 );
@@ -55,39 +53,49 @@ export const carsSlice = createSlice({
     areMakesFetching: false,
     areModelsFetching: false,
     areVehiclesFetching: false,
-    makes: {},
+    makesError: null,
+    modelsError: null,
+    vehiclesError: null,
+    makes: null,
+    models: {},
+    vehicles: {},
   },
   extraReducers: {
     [getMakes.pending]: (state) => {
       state.areMakesFetching = true;
+      state.makesError = null;
     },
-    [getMakes.fulfilled]: (state, action) => {
+    [getMakes.fulfilled]: (state, { payload }) => {
       state.areMakesFetching = false;
-      state.makes = action.payload;
+      state.makes = payload;
     },
-    [getMakes.rejected]: (state, action) => {
+    [getMakes.rejected]: (state, { error }) => {
       state.areMakesFetching = false;
+      state.makesError = error;
     },
-    [getModels.pending]: (state, action) => {
+    [getModels.pending]: (state) => {
       state.areModelsFetching = true;
+      state.modelsError = null;
     },
-    [getModels.fulfilled]: (state, action) => {
+    [getModels.fulfilled]: (state, { payload }) => {
       state.areModelsFetching = false;
-      state.makes = action.payload;
-      //convert array to object
+      state.models[payload.make] = payload.models;
     },
-    [getModels.rejected]: (state, action) => {
+    [getModels.rejected]: (state, { error }) => {
       state.areModelsFetching = false;
-
+      state.modelsError = error;
     },
-    [getVehicles.pending]: (state, action) => {
+    [getVehicles.pending]: (state) => {
       state.areVehiclesFetching = true;
+      state.vehiclesError = null;
     },
-    [getVehicles.fulfilled]: (state, action) => {
+    [getVehicles.fulfilled]: (state, { payload }) => {
+      state.vehicles[generateVehiclesKey(payload.make, payload.model)] = payload.vehicles;
       state.areVehiclesFetching = false;
     },
-    [getVehicles.rejected]: (state, action) => {
+    [getVehicles.rejected]: (state, { error }) => {
       state.areVehiclesFetching = false;
+      state.vehiclesError = error;
     },
   },
 });

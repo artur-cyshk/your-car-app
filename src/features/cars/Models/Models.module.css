@@ -1,4 +1,4 @@
-.make {
+.model {
   width: 100%;
   min-height: 70px;
   font-size: 12px;
@@ -11,16 +11,15 @@
   margin-bottom: 5px;
 }
 
+.model:last-child {
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 600px) {
-  .make {
+  .model {
     width: 70px;
     height: 70px;
     border: 1px solid #d8dbeb;
     margin: 5px;
   }
-}
-
-
-.make:last-child {
-  margin-bottom: 0;
 }

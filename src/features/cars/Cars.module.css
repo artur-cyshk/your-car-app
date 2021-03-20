@@ -1,0 +1,13 @@
+.cars {
+  padding: 20px;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .cars {
+    flex-direction: column;
+    overflow: auto;
+  }
+}
