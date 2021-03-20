@@ -1,6 +1,7 @@
 .section {
   border: 1px solid #e8eafb;
   width: 33%;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -40,7 +41,6 @@
   .section {
     width: 100%;
     margin: 0 0 10px 0;
-    overflow: visible;
     border-radius: 8px;
   }
 
