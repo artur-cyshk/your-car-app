@@ -34,14 +34,14 @@ or manually start local server: **node apiserver/server.js** and start react dev
 
 ## Main Dependencies
 
-- react - main library
-- react-scripts - helps with project setup: development, builds, linters, scripts and etc.
-- @testing-library - library for testing react component with jest
-- redux - application state management
-- react-icons - library with icon components for better UX
-- react-router - routes control in application
-- react-virtualized-auto-sizer - HOC that caclulate width and height for children. Is necessary for virtualizing data(vehicles)
-- react-window - component for virtualizing data(vehicles)
+- **react** - main library
+- **react-scripts** - helps with project setup: development, builds, linters, scripts and etc.
+- **@testing-library** - library for testing react component with jest
+- **redux** - application state management
+- **react-icons** - library with icon components for better UX
+- **react-router** - routes control in application
+- **react-virtualized-auto-sizer** - HOC that caclulate width and height for children. Is necessary for virtualizing data(vehicles)
+- **react-window** - component for virtualizing data(vehicles)
 
 ## Main Features (Proof of concept)
 
