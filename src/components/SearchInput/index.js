@@ -20,7 +20,7 @@ const SearchInput = ({ onSearch, placeholder }) => {
         placeholder={placeholder}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <BiSearchAlt className={styles.icon}/>
+      <BiSearchAlt size="20" className={styles.icon}/>
     </div>
   );
 };
