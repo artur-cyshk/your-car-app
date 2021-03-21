@@ -16,6 +16,7 @@ import IconLink from 'components/IconLink';
 import Vehicles from './Vehicles/Vehicles';
 
 import { getModels, selectModels } from './carsSlice';
+import { filterItems } from './cars.service';
 
 const Models = () => {
   const { make } = useParams();
@@ -59,6 +60,8 @@ const Models = () => {
               )}
               emptyText="No models found."
               refresh={loadModels}
+              filter={filterItems}
+              searhPlaceholder="Filter models"
               error={modelsError}
             />
           )

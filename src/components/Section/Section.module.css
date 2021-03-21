@@ -39,12 +39,10 @@
 }
 
 .content {
-  overflow: auto;
   flex-direction: column;
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: auto;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -52,10 +50,5 @@
     width: 100%;
     margin: 0 0 10px 0;
     border-radius: 8px;
-  }
-
-  .content {
-    padding: 10px 0;
-    flex-direction: row;
   }
 }

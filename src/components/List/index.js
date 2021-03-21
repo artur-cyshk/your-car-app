@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './List.module.css';
 import { FaCarCrash } from 'react-icons/fa';
 import { GiHomeGarage } from 'react-icons/gi';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { FixedSizeList } from 'react-window';
+
 import ListAlert from './ListAlert';
+import styles from './List.module.css';
 
 import Spinner from '../Spinner';
+import SearchInput from '../SearchInput';
 
-const List = ({ isListLoading, items, renderItem, refresh, error, emptyText }) => {
+const List = ({
+  isListLoading,
+  items,
+  renderItem,
+  refresh,
+  filter,
+  error,
+  emptyText,
+  isVirtual,
+  searhPlaceholder,
+  listItemSize,
+}) => {
+  const [searchText, setSearchText] = useState('');
+
   if (isListLoading) {
     return <Spinner/>;
   }
@@ -47,12 +64,33 @@ const List = ({ isListLoading, items, renderItem, refresh, error, emptyText }) =
     );
   }
 
-  if (items?.length > 0) {
+  if (items) {
+    let filteredItems = searchText && filter ? items.filter(item => filter(item, searchText)) : items;
     return (
-      <ul className={styles.list}>
-        {items.map((item) => renderItem(item, styles.listItem))}
-      </ul>
-    )
+      <>
+        {filter && <SearchInput placeholder={searhPlaceholder} onSearch={setSearchText} />}
+          {isVirtual ? (
+            <div className={styles.virtualListContainer}>
+              <AutoSizer>
+                {({ height, width }) => (
+                  <FixedSizeList
+                    width={width}
+                    height={height}
+                    itemCount={filteredItems.length}
+                    itemSize={listItemSize}
+                  >
+                    {({ index, style }) => <div style={style}>{renderItem(filteredItems[index], styles.listItem)}</div>}
+                  </FixedSizeList>
+                )}
+              </AutoSizer>
+            </div>
+          ) : (
+            <ul className={styles.list}>
+              {filteredItems.map((item) => renderItem(item, styles.listItem))}
+            </ul>
+          )}
+      </>
+    );
   }
 
   return null;
@@ -65,6 +103,10 @@ List.propTypes = {
   refresh: PropTypes.func.isRequired,
   error: PropTypes.object,
   emptyText: PropTypes.string,
+  isVirtual: PropTypes.bool,
+  filter: PropTypes.func,
+  searhPlaceholder: PropTypes.string,
+  listItemSize: PropTypes.number,
 };
 
 export default List;

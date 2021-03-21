@@ -7,6 +7,9 @@ import List from 'components/List';
 import Vehicle from './Vehicle';
 
 import { selectVehicles, getVehicles } from '../carsSlice';
+import { filterVehicles } from '../cars.service';
+
+import styles from './Vehicles.module.css';
 
 const Vehicles = () => {
   let { make, model } = useParams();
@@ -27,14 +30,18 @@ const Vehicles = () => {
   }, [loadVehicles]);
 
   return (
-    <Section title="Vehicles">
+    <Section className={styles.vehiclesSection} title="Vehicles">
       <List
+        isVirtual
         items={vehicles}
         isListLoading={areVehiclesFetching}
         renderItem={(vehicle) => <Vehicle key={vehicle.id} vehicle={vehicle} />}
         emptyText="No vehicles found."
         refresh={loadVehicles}
+        filter={filterVehicles}
+        searhPlaceholder="Filter vehicles"
         error={vehiclesError}
+        listItemSize={100}
       />
     </Section>
   )

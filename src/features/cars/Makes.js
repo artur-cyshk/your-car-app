@@ -9,6 +9,7 @@ import IconLink from 'components/IconLink';
 
 import Models from './Models';
 import { getMakes, selectMakes } from './carsSlice';
+import { filterItems } from './cars.service';
 
 const Makes = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,8 @@ const Makes = () => {
                 )}
                 emptyText="No makes found."
                 refresh={loadMakes}
+                filter={filterItems}
+                searhPlaceholder="Filter makes"
                 error={makesError}
               />
             )
