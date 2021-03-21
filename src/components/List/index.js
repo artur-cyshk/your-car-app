@@ -32,9 +32,7 @@ const List = ({
   if (items?.length === 0) {
     return  (
       <ListAlert
-        icon={{
-          component: GiHomeGarage,
-        }}
+        Icon={GiHomeGarage}
         text={(
           <>
             <span>Garage empty.</span>
@@ -49,10 +47,8 @@ const List = ({
   if (error) {
     return  (
       <ListAlert
-        icon={{
-          component: FaCarCrash,
-          color: '#e2789a',
-        }}
+        Icon={FaCarCrash}
+        iconClassName={styles.crashIcon}
         text={(
           <>
             <span>An error occurred on the server.</span>
@@ -70,9 +66,7 @@ const List = ({
         {filter && <SearchInput placeholder={searhPlaceholder} onSearch={setSearchText} />}
         {filteredItems?.length === 0 ? (
           <ListAlert
-            icon={{
-              component: BiSearchAlt,
-            }}
+            Icon={BiSearchAlt}
             text={emptyText}
           />
         ): (

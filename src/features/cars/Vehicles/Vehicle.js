@@ -7,7 +7,7 @@ import { GiKeyCard } from 'react-icons/gi';
 const Vehicle = ({ vehicle }) => {
   return (
     <div className={styles.vehicle}>
-      <GiKeyCard color="#979eb7" size="35"/>
+      <GiKeyCard className={styles.vehicleIcon} />
       <div className={styles.data}>
         <div className={styles.row}>
           <span className={styles.bodyType}>{vehicle.bodyType}</span>

@@ -1,3 +1,5 @@
+@value manatee, snuff from 'styles/variables.css';
+
 .vehicle {
   width: 90%;
   min-height: 90px;
@@ -5,7 +7,7 @@
   font-size: 12px;
   position: relative;
   padding: 5px;
-  border: 1px solid #d8dbeb;
+  border: 1px solid snuff;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -46,6 +48,10 @@
   font-size: 18px;
 }
 
+.vehicle .vehicleIcon {
+  font-size: 35px;
+  color: manatee;
+}
 @media only screen and (max-width: 1000px) {
 
   .vehiclesSection {

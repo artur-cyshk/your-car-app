@@ -1,5 +1,7 @@
+@value snuff from 'styles/variables.css';
+
 .section {
-  border: 1px solid #e8eafb;
+  border: 1px solid snuff;
   width: 33%;
   min-height: 100px;
   display: flex;
@@ -33,7 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e8eafb;
+  background-color: snuff;
   text-transform: uppercase;
   font-weight: bold;
 }

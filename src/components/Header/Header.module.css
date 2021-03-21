@@ -1,7 +1,6 @@
 .carsHeader {
   display: flex;
   height: 80px;
-  border-bottom: 1px solid #d8dceb;
   padding: 20px;
   align-items: center;
   font-weight: 600;

@@ -2,22 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './List.module.css';
 
-const ListAlert = ({ icon, text }) => {
-  const IconComponent = icon.component;
+const ListAlert = ({ Icon, text, iconClassName = '' }) => {
   return (
     <div className={styles.info}>
-      <IconComponent size="50" color={icon.color || '#948bc3'} />
+      <Icon className={`${styles.infoIcon} ${iconClassName}`} />
       <p>{text}</p>
     </div>
   );
 }
 
 ListAlert.propTypes = {
-  icon: PropTypes.shape({
-    color: PropTypes.string,
-    component: PropTypes.func.isRequired,
-  }),
+  Icon: PropTypes.func.isRequired,
   text: PropTypes.node.isRequired,
+  iconClassName: PropTypes.string,
 }
 
 export default ListAlert;

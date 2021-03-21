@@ -1,3 +1,5 @@
+@value snuff from 'styles/variables.css';
+
 .cars {
   padding: 20px;
   display: flex;
@@ -20,5 +22,5 @@ a {
 }
 
 a:active {
-  color: #d8dbeb;
+  color: snuff;
 }
