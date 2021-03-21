@@ -16,7 +16,6 @@ const Vehicles = () => {
   const dispatch = useDispatch();
 
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-  console.log(selectedVehicle);
   const vehicles = useSelector(state => selectVehicles(state, make, model));
   const areVehiclesFetching = useSelector(state => state.cars.areVehiclesFetching);
   const vehiclesError = useSelector(state => state.cars.vehiclesError);
