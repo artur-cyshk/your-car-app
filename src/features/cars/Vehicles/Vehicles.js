@@ -33,7 +33,7 @@ const Vehicles = () => {
   return (
     <Section className={styles.vehiclesSection} title="Vehicles">
       {selectedVehicle ? (
-        <div className={styles.selectedVehicle}>
+        <div className={styles.selectedVehicleContainer}>
           <Vehicle isSelected vehicle={selectedVehicle} onSelect={setSelectedVehicle} />
         </div>
       ) : (

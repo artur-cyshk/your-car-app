@@ -1,4 +1,4 @@
-@value alto, manatee, snuff from 'styles/variables.css';
+@value athensGray, alto, deepBlush, manatee, snuff from 'styles/variables.css';
 
 .vehicle {
   width: 90%;
@@ -14,9 +14,15 @@
   align-items: center;
   margin: 5px auto 0 auto;
   cursor: pointer;
+  transition: 0.2s linear background-color;
 }
 
-.selectedVehicle {
+.vehicle:hover,
+.selectedVehicleContainer > .vehicle {
+  background-color: athensGray;
+}
+
+.selectedVehicleContainer {
   display: flex;
   flex: 1;
   justify-content: center;
@@ -35,7 +41,7 @@
 }
 
 .deselect:hover {
-  color: snuff;
+  color: deepBlush;
 }
 
 .vehicle:last-child {
