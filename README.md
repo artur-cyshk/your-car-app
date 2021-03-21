@@ -1,68 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Task
 
-## Available Scripts
+Build a simple web app that allows a user to select their car from a directory of registered cars.
+This data will be provided by the api server in this repo.
+The api provides a list of available makes, models of each make and specific cars for each model with horsepower and engine capacity info.
 
-In the project directory, you can run:
+## Local dev setup guide
 
-### `yarn start`
+1. Clone repo
+2. cd your-car/
+3. install dependencies: **yarn**
+4. start local server and react dev server: **yarn start-with-local-server**
+or manually start local server: **node apiserver/server.js** and start react dev server: **yarn start**
+5. open **http://localhost:3000** in your browser(Google Chrome, Mozilla Firefox, Safari, Microsoft Edge)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local build setup guide
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. Clone repo
+2. cd your-car/
+3. install dependencies: **yarn**
+4. **npm install -g serve** or **yarn global add serve**
+5. start local server: **node apiserver/server.js** 
+6. build app: **yarn build**
+7. serve build locally: **serve -s build**
+8. open **localhost:5000** in your browser(Google Chrome, Mozilla Firefox, Safari, Microsoft Edge)
 
-### `yarn test`
+## Setup tests
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone repo
+2. cd your-car/
+3. install dependencies: **yarn**
+4. to run all available tests: **yarn test**
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Main Dependencies
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- react - main library
+- react-scripts - helps with project setup: development, builds, linters, scripts and etc.
+- @testing-library - library for testing react component with jest
+- redux - application state management
+- react-icons - library with icon components for better UX
+- react-router - routes control in application
+- react-virtualized-auto-sizer - HOC that caclulate width and height for children. Is necessary for virtualizing data(vehicles)
+- react-window - component for virtualizing data(vehicles)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Main Features (Proof of concept)
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **vehicle id generation**: needed for react to identify element. We can get multiple vehicles with the same params, that's why i decided to identify them
+- **routing for models and vehicles**: needed for better UX, so the user doesn't need to select make and model every time the page is reloaded
+- added **responsive layout** to get better view on small screens(mobiles and tablets)
+- added **virtual scroll** on vehicles data list because we potentially we can receive very large lists of data and especially on weak computers get glitches. Virtual scroll helps application to prevent glitches in such cases
+- added **ability to try again** when we get error from server
+- added **ability to filter makes, models and vehicles** to make it easier for users to find needed item
+- added debounce on search to prevent application from unnecessary processes
+- added a **special loader** to match the application theme
+- added **appearance animation** for sections
+- added **basic unit tests** for several component
+- added custom **font**

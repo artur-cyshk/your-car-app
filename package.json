@@ -18,6 +18,7 @@
     "react-window": "^1.8.6"
   },
   "scripts": {
+    "start-with-local-server": "node apiserver/server.js & react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
