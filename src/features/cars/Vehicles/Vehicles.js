@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +15,8 @@ const Vehicles = () => {
   let { make, model } = useParams();
   const dispatch = useDispatch();
 
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+  console.log(selectedVehicle);
   const vehicles = useSelector(state => selectVehicles(state, make, model));
   const areVehiclesFetching = useSelector(state => state.cars.areVehiclesFetching);
   const vehiclesError = useSelector(state => state.cars.vehiclesError);
@@ -31,18 +33,30 @@ const Vehicles = () => {
 
   return (
     <Section className={styles.vehiclesSection} title="Vehicles">
-      <List
-        isVirtual
-        items={vehicles}
-        isListLoading={areVehiclesFetching}
-        renderItem={(vehicle) => <Vehicle key={vehicle.id} vehicle={vehicle} />}
-        emptyText="No vehicles found."
-        refresh={loadVehicles}
-        filter={filterVehicles}
-        searhPlaceholder="Filter vehicles"
-        error={vehiclesError}
-        listItemSize={100}
-      />
+      {selectedVehicle ? (
+        <div className={styles.selectedVehicle}>
+          <Vehicle isSelected vehicle={selectedVehicle} onSelect={setSelectedVehicle} />
+        </div>
+      ) : (
+        <List
+          isVirtual
+          items={vehicles}
+          isListLoading={areVehiclesFetching}
+          renderItem={(vehicle) => (
+            <Vehicle
+              key={vehicle.id}
+              onSelect={setSelectedVehicle}
+              vehicle={vehicle}
+            />
+          )}
+          emptyText="No vehicles found."
+          refresh={loadVehicles}
+          filter={filterVehicles}
+          searhPlaceholder="Filter vehicles"
+          error={vehiclesError}
+          listItemSize={100}
+        />
+      )}
     </Section>
   )
 };

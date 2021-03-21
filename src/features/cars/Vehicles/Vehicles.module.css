@@ -1,4 +1,4 @@
-@value manatee, snuff from 'styles/variables.css';
+@value alto, manatee, snuff from 'styles/variables.css';
 
 .vehicle {
   width: 90%;
@@ -6,13 +6,36 @@
   min-width: 280px;
   font-size: 12px;
   position: relative;
-  padding: 5px;
+  padding: 20px 5px;
   border: 1px solid snuff;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 5px auto 0 auto;
+  cursor: pointer;
+}
+
+.selectedVehicle {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.deselect {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: manatee;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.deselect:hover {
+  color: snuff;
 }
 
 .vehicle:last-child {
