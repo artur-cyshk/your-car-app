@@ -1,18 +1,18 @@
 @value snuff from 'styles/variables.css';
 
 .cars {
-  padding: 20px;
   display: flex;
   flex: 1;
-  overflow: hidden;
+  padding: 20px;
   justify-content: center;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 1000px) {
   .cars {
     flex-direction: column;
-    overflow: auto;
     justify-content: flex-start;
+    overflow: auto;
   }
 }
 
