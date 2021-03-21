@@ -4,6 +4,7 @@ import { FaCarCrash } from 'react-icons/fa';
 import { GiHomeGarage } from 'react-icons/gi';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList } from 'react-window';
+import { BiSearchAlt } from 'react-icons/bi';
 
 import ListAlert from './ListAlert';
 import styles from './List.module.css';
@@ -34,7 +35,6 @@ const List = ({
         icon={{
           component: GiHomeGarage,
         }}
-        alt="empty-list"
         text={(
           <>
             <span>Garage empty.</span>
@@ -53,7 +53,6 @@ const List = ({
           component: FaCarCrash,
           color: '#e2789a',
         }}
-        alt="server-error"
         text={(
           <>
             <span>An error occurred on the server.</span>
@@ -69,7 +68,15 @@ const List = ({
     return (
       <>
         {filter && <SearchInput placeholder={searhPlaceholder} onSearch={setSearchText} />}
-          {isVirtual ? (
+        {filteredItems?.length === 0 ? (
+          <ListAlert
+            icon={{
+              component: BiSearchAlt,
+            }}
+            text={emptyText}
+          />
+        ): (
+          isVirtual ? (
             <div className={styles.virtualListContainer}>
               <AutoSizer>
                 {({ height, width }) => (
@@ -88,7 +95,8 @@ const List = ({
             <ul className={styles.list}>
               {filteredItems.map((item) => renderItem(item, styles.listItem))}
             </ul>
-          )}
+          )
+        )}
       </>
     );
   }

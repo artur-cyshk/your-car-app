@@ -58,6 +58,14 @@
   flex: 1;
 }
 
+.noItemsFound {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 1000px) {
   .list {
     flex-direction: row;
