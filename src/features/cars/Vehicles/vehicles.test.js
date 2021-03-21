@@ -1,8 +1,11 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { act } from 'react-dom/test-utils';
+import store from '../../../store';
 
-import Section from './index';
+import Vehicles from './Vehicles';
 
 let container = null;
 
@@ -17,12 +20,9 @@ afterEach(() => {
   container = null;
 });
 
-it('renders section with title and content', () => {
-  const title = 'test_title';
-  const content = 'test_content';
+it('renders vehicles section', () => {
   act(() => {
-    render(<Section title={title}><span>{content}</span></Section>, container);
+    render(<Provider store={store}><Router><Vehicles /></Router></Provider>, container);
   });
-  expect(container.querySelector('header').textContent).toBe(title);
-  expect(container.querySelector('main').textContent).toBe(content);
+  expect(container.querySelector('header').textContent).toBe('Vehicles');
 });

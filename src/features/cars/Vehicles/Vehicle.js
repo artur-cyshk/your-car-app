@@ -9,11 +9,11 @@ const Vehicle = ({ vehicle }) => {
     <div className={styles.vehicle}>
       <GiKeyCard className={styles.vehicleIcon} />
       <div className={styles.data}>
-        <div className={styles.row}>
+        <div data-testid="types" className={styles.row}>
           <span className={styles.bodyType}>{vehicle.bodyType}</span>
           <span className={styles.fuelType}>{vehicle.fuelType}</span>
         </div>
-        <div className={styles.row}>
+        <div data-testid="params" className={styles.row}>
           <span>Engine:</span> 
           <span>{vehicle.engineCapacity} cm³ / {vehicle.enginePowerKW} kw / {vehicle.enginePowerPS} ps</span>
         </div>
@@ -25,7 +25,12 @@ const Vehicle = ({ vehicle }) => {
 Vehicle.propTypes = {
   vehicle: PropTypes.shape({
     make: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired
+    model: PropTypes.string.isRequired,
+    bodyType: PropTypes.string.isRequired,
+    fuelType: PropTypes.string.isRequired,
+    engineCapacity: PropTypes.number.isRequired,
+    enginePowerKW: PropTypes.number.isRequired,
+    enginePowerPS: PropTypes.number.isRequired,
   }).isRequired,
 };
 
