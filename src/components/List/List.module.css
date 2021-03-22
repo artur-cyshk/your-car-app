@@ -54,7 +54,7 @@
 }
 
 .listItem:last-child {
-  margin-bottom: 0;
+  border-bottom: 0;
 }
 
 .listItem:hover {
@@ -90,6 +90,10 @@
     width: 90px;
     height: 90px;
     margin: 5px;
+    border: 1px solid snuff;
+  }
+
+  .listItem:last-child {
     border: 1px solid snuff;
   }
 }
